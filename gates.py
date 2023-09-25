@@ -1,10 +1,12 @@
 import numpy as np
 
 class Gates:
-    def H(self, target_qubit):
+    def H(self, *target_qubit):
         # Apply the Hadamard gate to a single qubit
         h_gate = 1 / np.sqrt(2) * np.array([[1, 1], [1, -1]], dtype=complex)
-        self.apply_gate_qubit(h_gate, [target_qubit],gate_name='H')
+        # Add the operation to the operations list
+        self.apply_gate_qubit(h_gate, list(target_qubit),gate_name='H')
+
     
     def swap(self, qubit1, qubit2):
         # Create the SWAP gate matrix
@@ -16,10 +18,10 @@ class Gates:
         # Apply the SWAP gate to the specified qubits
         self.apply_gate_qubit(swap_gate, [qubit1, qubit2],gate_name='swap')
     
-    def X(self, *target_qubits):
+    def X(self, *target_qubit):
         # Apply the Pauli-X gate to multiple qubits
         x_gate = np.array([[0, 1], [1, 0]], dtype=complex)
-        self.apply_gate_qubit(x_gate, list(target_qubits), gate_name='X')
+        self.apply_gate_qubit(x_gate, list(target_qubit), gate_name='X')
 
     def Y(self, *target_qubit):
         # Apply the Pauli-Y gate to a single qubit
